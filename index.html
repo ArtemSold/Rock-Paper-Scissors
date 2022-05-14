@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Камень-ножницы-бумага</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!--
+        Камень - серый
+        Ножницы - оранжевые
+        Бумага - белая
+    -->
+    <div class="col-8 mx-auto text-center mt-5">
+        <h1 class="info igroText228">Игрок 1 ходит!</h1>
+        <div class="row  py-5">
+            <div class="col-6 bg-success py-5">
+                <h1>Игрок 1</h1>
+                <div class="choice-player-1">
+
+                </div>
+                <p>Камень (серый) - A</p>
+                <p>Ножницы (оранжевый)- S</p>
+                <p>Бумага (белый)- D</p>
+            </div>
+            <div class="col-6 bg-info py-5">
+                <h1>Игрок 2</h1>
+                <div class="choice-player-2">
+                </div>
+                <p>Камень (серый)- J</p>
+                <p>Ножницы (оранжевый)- K</p>
+                <p>Бумага (белый)- L</p>
+            </div>
+        </div>
+    </div>
+    
+<script type="text/javascript">
+    let PlayerName = "first"    
+    let player1status = null
+    let player2status = null
+    let blackBox1 = document.querySelector('.choice-player-1')
+    let blackBox2 = document.querySelector('.choice-player-2')
+    let igroText = document.querySelector('.igroText228')
+
+    document.addEventListener("keydown", function (event) {
+        if (PlayerName=="first") {
+            if (event.code=="KeyA") {
+                console.log("1 КАМЕЕЕНЬ!!")
+                PlayerName="second"
+                player1status = "КАМЕЕЕНЬ"
+                igroText.innerHTML = "Игрок 2 ходит!"
+            } else if (event.code=="KeyS") {
+                console.log("1 НОЖНИЦЫ!!")
+                PlayerName="second"
+                player1status = "НОЖНИЦЫ"
+                igroText.innerHTML = "Игрок 2 ходит!"
+            } else if (event.code=="KeyD") {
+                console.log("1 БУМАГААА!!")
+                PlayerName="second"
+                player1status = "БУМАГААА"
+                igroText.innerHTML = "Игрок 2 ходит!"
+            } else(
+                console.log("NE TA BUTTON!!"))
+        }else if (PlayerName="second"){
+                if (event.code=="KeyJ") {
+                console.log("2 КАМЕЕЕНЬ!!")
+                PlayerName="final"
+                player2status = "КАМЕЕЕНЬ"
+                igroText.innerHTML = "Игроки не ходят!"
+            } else if (event.code=="KeyK") {
+                console.log("2 НОЖНИЦЫ!!")
+                PlayerName="final"
+                player2status = "НОЖНИЦЫ"
+                igroText.innerHTML = "Игроки не ходят!"
+            } else if (event.code=="KeyL") {
+                console.log("2 БУМАГААА!!")
+                PlayerName="final"
+                player2sstatus = "БУМАГААА"
+                igroText.innerHTML = "Игроки не ходят!"
+            } else(
+                console.log("NE TA BUTTON!!"))
+        }
+    
+
+        if(PlayerName=="final"){
+            console.log("конец")
+
+
+        setTimeout(colorser, 500)
+
+        setTimeout(winner, 1000)
+            //1 таймаут вызывает функцию которая перекрашивает дивы
+
+            //1 таймаут вызывает функцию которая определяет победителя
+        }
+
+
+
+    })
+
+    let colorser = function() {
+        if (player1status=="КАМЕЕЕНЬ"){
+            blackBox1.style.backgroundImage = "url(камень.png)"
+            blackBox1.style.backgroundSize = "100% 100%"       }
+        else if (player1status=="НОЖНИЦЫ") {
+            blackBox1.style.backgroundImage = "url(ножницы.png)"
+            blackBox1.style.backgroundSize = "100% 100%"
+        }
+        else if (player1status=="БУМАГААА") {
+            blackBox1.style.backgroundImage = "url(бумага.png)"
+            blackBox1.style.backgroundSize = "100% 100%"        }
+
+
+        if (player2status=="КАМЕЕЕНЬ"){
+            blackBox2.style.backgroundImage = "url(камень.png)"
+            blackBox2.style.backgroundSize = "100% 100%"       }
+        else if (player2status=="НОЖНИЦЫ") {
+            blackBox2.style.backgroundImage = "url(ножницы.png)"
+            blackBox2.style.backgroundSize = "100% 100%"
+        }
+        else if (player2status=="БУМАГААА") {
+            blackBox2.style.backgroundImage = "url(бумага.png)"
+            blackBox2.style.backgroundSize = "100% 100%"        }
+
+    }
+
+    let winner = function() {
+        if (player1status==player2status) {
+            alert("ничья")
+        } else if (player1status=="КАМЕЕЕНЬ" && player2status=="НОЖНИЦЫ") {
+            alert("победил игрок 1")
+        } else if (player1status=="НОЖНИЦЫ "&& player2status=="БУМАГААА") {
+            alert("победил игрок 1")
+        } else if (player1status=="БУМАГААА" && player2status=="КАМЕЕЕНЬ") {
+            alert("победил игрок 1")
+        } else {
+            alert("победил игрок 2")
+        }
+    }
+    /*
+
+        let перекрашиватель = function() {
+            если (статус1==ножницы){
+                перекрасить див
+            }   элсе иф (статус1==камень)...
+
+            если (статус1==ножницы){
+                перекрасить див
+            }   элсе иф (статус1==камень)...
+        }
+        
+        лет победители = функция() {
+            если (статус1 == статус2){
+                ничья
+            } элсе иф (статус1 == камень && статус2 == ножницы) {
+                победил игрок 1
+            } элсе иф (статус1 == ножницы && статус2 == бумага) {
+                победил игрок 1
+            } элсе иф (статус1 == бумага && статус2 == камень) {
+                победил игрок 1
+            } элсе {
+                победил игрок 2
+            }
+        }
+
+    */
+
+
+</script>   
+</body>
+</html>
